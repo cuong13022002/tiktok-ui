@@ -20,7 +20,7 @@ const cx = classNames.bind(styles)
 
 function Search() {
 
-    const [searchValue,setSearchVallue] = useState('')
+    const [searchValue,setSearchValue] = useState('')
     const [searchResult,setSearchResult] = useState([])
     const [showResult,setShowResult] = useState(true)
     const [loading,setLoading] = useState(false)
@@ -37,7 +37,7 @@ function Search() {
         }
 
         const fetchApi = async () =>{
-            
+
             setLoading(true)
 
             const result = await searchServices.search(debounced)
@@ -50,12 +50,24 @@ function Search() {
     },[debounced])
 
     const handleClear = () =>{
-        setSearchVallue('')
+        setSearchValue('')
         setSearchResult([])
         inputRef.current.focus()
     }
     const handleHideResult = () =>{
         setShowResult(false)
+    }
+    const handleChange = (e) => {
+
+        const searchValue = e.target.value;
+
+        if(!searchValue.startsWith(' ')){
+
+            setSearchValue(searchValue)
+        }
+    }
+    const handleSubmit = (e) =>{
+        e.preventDefault();
     }
     return ( 
         <HeadlessTippy 
@@ -86,7 +98,7 @@ function Search() {
                 value={searchValue}
                 placeholder='Search accounts and videos' 
                 spellCheck={false}
-                onChange={(e) => setSearchVallue(e.target.value)}
+                onChange={handleChange}
                 onFocus={()=> setShowResult(true)}
             />
             {!!searchValue && !loading && (
@@ -101,7 +113,7 @@ function Search() {
             {/* {loading} */}
               {loading &&  <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />} 
 
-            <button className={cx('search-btn')}>
+            <button className={cx('search-btn')} onMouseDown={(e) =>e.preventDefault()}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
         </div>
