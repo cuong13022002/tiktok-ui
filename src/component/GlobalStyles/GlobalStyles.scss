@@ -1,7 +1,4 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@0,100..900;1,100..900&display=swap');
-
-
 :root {
     --primary: #fe2c55;
     --text-color:#333;
@@ -9,6 +6,7 @@
     // DefaultLayout
     --default-layout-header-height: 60px;
     --default-layout-width:1150px;
+    --default-layout-horizotal-spacer:24px;
 }
 * {
     margin: 0;
@@ -19,7 +17,7 @@ html {
     font-size: 62.5%;
 }
 body{
-    font-family: " Roboto", sans-serif;
+    font-family: "TiktokDisPlayFont-Bold ", sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -32,3 +30,53 @@ a[href]{
     color: var(--text-color);
     text-decoration: none;
 }
+// Fonts
+
+@font-face {
+    font-family: TiktokDisPlayFont-Bold ;
+    src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: TiktokDisplayFont-Semiblod ;
+    src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
+    font-weight: 600;
+}
+@font-face {
+    font-family: TiktokFont-Bold ;
+    src: url('/assets/fonts/TikTokFont-Bold.woff2');
+    font-weight: 700;
+}
+@font-face {
+    font-family: TiktokFont-Regular ;
+    src: url('/assets/fonts/TikTokFont-Regular.woff2');
+    font-weight: 700;
+}
+@font-face {
+    font-family: TiktokFont-Semibold;
+    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: 700;
+}
+
+
+
+
+// Custom tippy tooltip
+body{
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84,84,84,0.92);
+    }
+    .tippy-arrow {
+        background-color: rgba(84,84,84,0.92);
+    }
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow::before{
+        top: -8px;
+    }
+    .tippy-content {
+        padding: 8px 9px;
+    }
+}    
